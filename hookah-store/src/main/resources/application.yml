@@ -27,7 +27,7 @@ spring:
 
 app:
   default:
-    password: topsecret
+    password: 123456789
 
 logging:
   level:

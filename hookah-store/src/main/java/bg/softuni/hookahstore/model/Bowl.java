@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "blows")
-public class Blow {
+public class Bowl {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Blow {
         return id;
     }
 
-    public Blow setId(Long id) {
+    public Bowl setId(Long id) {
         this.id = id;
         return this;
     }
@@ -42,7 +42,7 @@ public class Blow {
         return name;
     }
 
-    public Blow setName(String name) {
+    public Bowl setName(String name) {
         this.name = name;
         return this;
     }
@@ -51,7 +51,7 @@ public class Blow {
         return price;
     }
 
-    public Blow setPrice(double price) {
+    public Bowl setPrice(double price) {
         this.price = price;
         return this;
     }
@@ -60,7 +60,7 @@ public class Blow {
         return origin;
     }
 
-    public Blow setOrigin(Origin origin) {
+    public Bowl setOrigin(Origin origin) {
         this.origin = origin;
         return this;
     }
@@ -69,7 +69,7 @@ public class Blow {
         return material;
     }
 
-    public Blow setMaterial(Material material) {
+    public Bowl setMaterial(Material material) {
         this.material = material;
         return this;
     }
@@ -78,7 +78,7 @@ public class Blow {
         return description;
     }
 
-    public Blow setDescription(String description) {
+    public Bowl setDescription(String description) {
         this.description = description;
         return this;
     }
