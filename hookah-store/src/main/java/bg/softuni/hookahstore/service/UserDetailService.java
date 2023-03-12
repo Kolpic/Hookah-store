@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+// we don't have @Service, because we declare this service as a @Bean
 public class UserDetailService implements UserDetailsService {
 
     private final UserRepository userRepository;

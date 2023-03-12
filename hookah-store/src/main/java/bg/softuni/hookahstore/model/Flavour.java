@@ -32,6 +32,12 @@ public class Flavour {
     @Enumerated(EnumType.STRING)
     private Brand brand;
 
+    @Column(nullable = false)
+    private String pictureUrl;
+
+    @Column(nullable = false)
+    private boolean isAvailable;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -104,6 +110,24 @@ public class Flavour {
 
     public Flavour setBrand(Brand brand) {
         this.brand = brand;
+        return this;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public Flavour setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public Flavour setAvailable(boolean available) {
+        isAvailable = available;
         return this;
     }
 }

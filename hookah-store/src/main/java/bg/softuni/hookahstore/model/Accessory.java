@@ -34,6 +34,12 @@ public class Accessory {
     @Column
     private String color;
 
+    @Column(nullable = false)
+    private String pictureUrl;
+
+    @Column(nullable = false)
+    private boolean isAvailable;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -106,6 +112,24 @@ public class Accessory {
 
     public Accessory setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public Accessory setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public Accessory setAvailable(boolean available) {
+        isAvailable = available;
         return this;
     }
 }

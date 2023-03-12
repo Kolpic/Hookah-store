@@ -26,6 +26,12 @@ public class Bowl {
     @Enumerated(EnumType.STRING)
     private Material material;
 
+    @Column(nullable = false)
+    private String pictureUrl;
+
+    @Column(nullable = false)
+    private boolean isAvailable;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -80,6 +86,24 @@ public class Bowl {
 
     public Bowl setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public Bowl setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public Bowl setAvailable(boolean available) {
+        isAvailable = available;
         return this;
     }
 }

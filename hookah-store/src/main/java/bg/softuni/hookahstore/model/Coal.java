@@ -27,6 +27,12 @@ public class Coal {
     @Column
     private int size;
 
+    @Column(nullable = false)
+    private String pictureUrl;
+
+    @Column(nullable = false)
+    private boolean isAvailable;
+
     @Column(columnDefinition = "TEXT")
     private String description;
 
@@ -90,6 +96,24 @@ public class Coal {
 
     public Coal setDescription(String description) {
         this.description = description;
+        return this;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public Coal setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public Coal setAvailable(boolean available) {
+        isAvailable = available;
         return this;
     }
 }

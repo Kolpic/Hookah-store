@@ -12,12 +12,17 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.context.DelegatingSecurityContextRepository;
+import org.springframework.security.web.context.HttpSessionSecurityContextRepository;
+import org.springframework.security.web.context.RequestAttributeSecurityContextRepository;
+import org.springframework.security.web.context.SecurityContextRepository;
 
 @Configuration
 public class SecurityConfiguration {
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http,
+           SecurityContextRepository securityContextRepository) throws Exception {
         http.
                 // defines which pages will be authorized
                         authorizeHttpRequests().
@@ -43,7 +48,12 @@ public class SecurityConfiguration {
                         failureForwardUrl("/users/login-error").
                 // configure logout
                         and().logout().
-                logoutUrl("/users/logout").logoutSuccessUrl("/").invalidateHttpSession(true);
+                logoutUrl("/users/logout").
+                logoutSuccessUrl("/").
+                invalidateHttpSession(true).
+                and().
+                // info for this part in the chain in doc for bean number four
+                securityContext().securityContextRepository(securityContextRepository);
 
         return http.build();
     }
@@ -59,5 +69,16 @@ public class SecurityConfiguration {
     @Bean
     public UserDetailsService userDetailsService(UserRepository userRepository) {
         return new UserDetailService(userRepository);
+    }
+
+    // from migration spring security 5 to ss6
+    // for every http request from userService(authentication) we have to put in SecurityContext, we put it throw
+    // SecurityContextRepository that's why we have to expose this bean. To save userService(authentication) in SecurityContextRepository
+    @Bean
+    public SecurityContextRepository contextRepository() {
+        return new DelegatingSecurityContextRepository(
+                new RequestAttributeSecurityContextRepository(),
+                new HttpSessionSecurityContextRepository()
+        );
     }
 }
